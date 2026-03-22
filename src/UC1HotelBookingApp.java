@@ -26,7 +26,6 @@ public class UC1HotelBookingApp {
         // Inform user about system readiness
         System.out.println("Application started successfully.");
 
-        // End message
         System.out.println("Thank you for using the system.");
     }
 }
