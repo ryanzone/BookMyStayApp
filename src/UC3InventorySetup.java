@@ -11,7 +11,7 @@
  * @version 3.1
  */
 
-public class HotelBookingApp {
+public class UC3InventorySetup {
 
     public static void main(String[] args) {
 
