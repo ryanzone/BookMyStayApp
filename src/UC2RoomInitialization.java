@@ -49,7 +49,7 @@ class SuiteRoom extends Room {
     }
 }
 
-public class HotelBookingApp {
+public class UC2RoomInitialization {
     public static void main(String[] args) {
 
         Room single = new SingleRoom();
