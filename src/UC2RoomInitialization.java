@@ -1,60 +1,29 @@
+import java.util.*;
+
 /**
  * Version: 2.1
  *
  * Use Case 2: Basic Room Types & Static Availability
  * -------------------------------------------------
- * Demonstrates object-oriented design using abstraction, inheritance,
- * polymorphism, and encapsulation in a hotel booking context.
+ * Demonstrates object initialization and basic data handling
+ * using the Room class.
  *
- * Room types are modeled using an abstract class and concrete subclasses.
- * Availability is stored using simple variables to highlight limitations
- * before introducing data structures in later use cases.
+ * Room details such as type, price, and amenities are reused
+ * from the existing Room class.
+ *
+ * Availability is maintained using simple variables to highlight
+ * limitations before introducing data structures in later use cases.
  *
  * Author: Ryan John
  */
 
-abstract class Room {
-    private String roomType;
-    private int beds;
-    private double price;
-
-    public Room(String roomType, int beds, double price) {
-        this.roomType = roomType;
-        this.beds = beds;
-        this.price = price;
-    }
-
-    public void displayRoomDetails() {
-        System.out.println("Room Type: " + roomType);
-        System.out.println("Beds: " + beds);
-        System.out.println("Price: ₹" + price);
-    }
-}
-
-class SingleRoom extends Room {
-    public SingleRoom() {
-        super("Single Room", 1, 2000);
-    }
-}
-
-class DoubleRoom extends Room {
-    public DoubleRoom() {
-        super("Double Room", 2, 3500);
-    }
-}
-
-class SuiteRoom extends Room {
-    public SuiteRoom() {
-        super("Suite Room", 3, 6000);
-    }
-}
-
 public class UC2RoomInitialization {
+
     public static void main(String[] args) {
 
-        Room single = new SingleRoom();
-        Room doubleRoom = new DoubleRoom();
-        Room suite = new SuiteRoom();
+        Room single = new Room("Single Room", 2000, "1 Bed, WiFi");
+        Room doubleRoom = new Room("Double Room", 3500, "2 Beds, AC, WiFi");
+        Room suite = new Room("Suite Room", 6000, "3 Beds, AC, WiFi, TV");
 
         int singleAvailable = 5;
         int doubleAvailable = 3;
@@ -62,18 +31,18 @@ public class UC2RoomInitialization {
 
         System.out.println("===== Room Details & Availability =====\n");
 
-        single.displayRoomDetails();
-        System.out.println("Available: " + singleAvailable);
-        System.out.println("----------------------------------");
-
-        doubleRoom.displayRoomDetails();
-        System.out.println("Available: " + doubleAvailable);
-        System.out.println("----------------------------------");
-
-        suite.displayRoomDetails();
-        System.out.println("Available: " + suiteAvailable);
-        System.out.println("----------------------------------");
+        displayRoom(single, singleAvailable);
+        displayRoom(doubleRoom, doubleAvailable);
+        displayRoom(suite, suiteAvailable);
 
         System.out.println("\nApplication Terminated.");
+    }
+
+    public static void displayRoom(Room room, int availability) {
+        System.out.println("Room Type: " + room.getType());
+        System.out.println("Price: ₹" + room.getPrice());
+        System.out.println("Amenities: " + room.getAmenities());
+        System.out.println("Available: " + availability);
+        System.out.println("----------------------------------");
     }
 }
