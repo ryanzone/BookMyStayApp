@@ -6,53 +6,59 @@ import java.util.Map;
  * CLASS – RoomInventory
  * ================================================================
  *
- * Manages centralized room availability using HashMap.
+ * Manages centralized room availability using a HashMap.
  *
- * @author Ryan John Mathew
- * @version 3.0
+ * Provides controlled operations for booking and cancellation
+ * along with optional direct updates for administrative purposes.
+ *
+ * Author: Ryan John Mathew
+ * Version: 3.2
  */
 
 public class RoomInventory {
 
     private Map<String, Integer> inventory;
 
-    /**
-     * Constructor – initializes inventory with default room types
-     */
     public RoomInventory() {
         inventory = new HashMap<>();
 
-        // Initial room setup
         inventory.put("Single", 10);
         inventory.put("Double", 5);
         inventory.put("Suite", 2);
     }
 
-    /**
-     * Get availability of a specific room type
-     */
     public int getAvailability(String roomType) {
         return inventory.getOrDefault(roomType, 0);
     }
 
-    /**
-     * Update room availability (controlled update)
-     */
-    public void updateAvailability(String roomType, int count) {
-        if (inventory.containsKey(roomType)) {
-            inventory.put(roomType, count);
+    public boolean decrementRoom(String roomType) {
+        int current = inventory.getOrDefault(roomType, 0);
+
+        if (current > 0) {
+            inventory.put(roomType, current - 1);
+            return true;
         } else {
-            System.out.println("Room type does not exist.");
+            System.out.println("No rooms available for type: " + roomType);
+            return false;
         }
     }
 
-    /**
-     * Display full inventory
-     */
+    public void incrementRoom(String roomType) {
+        int current = inventory.getOrDefault(roomType, 0);
+        inventory.put(roomType, current + 1);
+    }
+
+    public void updateAvailability(String roomType, int count) {
+        inventory.put(roomType, count);
+    }
+
     public void displayInventory() {
-        System.out.println("Current Room Inventory:");
+        System.out.println("\n===== Current Room Inventory =====");
+
         for (Map.Entry<String, Integer> entry : inventory.entrySet()) {
             System.out.println(entry.getKey() + " Rooms: " + entry.getValue());
         }
+
+        System.out.println("==================================");
     }
 }
