@@ -8,7 +8,7 @@ import java.util.Map;
  *
  * Manages centralized room availability using HashMap.
  *
- * @author Developer
+ * @author Ryan John Mathew
  * @version 3.0
  */
 
