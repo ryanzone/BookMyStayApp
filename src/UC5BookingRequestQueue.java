@@ -9,7 +9,10 @@ import java.util.Queue;
  * Use Case 5: Booking Request (First-Come-First-Served)
  *
  * Demonstrates FIFO booking request handling using Queue.
- *
+ * 1. Create booking request queue
+ * 2. Guest submits booking requests
+ * 3. Display queue (without removing)
+ * 4. IMPORTANT: No removal, no allocation, no inventory update
  * @author Ryan John Mathew
  * @version 5.1
  */
@@ -18,10 +21,10 @@ public class UC5BookingRequestQueue {
 
     public static void main(String[] args) {
 
-        // Create booking request queue
+
         Queue<Reservation> bookingQueue = new LinkedList<>();
 
-        // Guest submits booking requests
+
         bookingQueue.add(new Reservation("Alice", "Single"));
         bookingQueue.add(new Reservation("Bob", "Double"));
         bookingQueue.add(new Reservation("Charlie", "Suite"));
@@ -29,7 +32,6 @@ public class UC5BookingRequestQueue {
 
         System.out.println("Booking Requests Received (FIFO Order):\n");
 
-        // Display queue (without removing)
         for (Reservation r : bookingQueue) {
             System.out.println(r);
         }
@@ -37,6 +39,5 @@ public class UC5BookingRequestQueue {
         System.out.println("\nNext request to be processed:");
         System.out.println(bookingQueue.peek()); // FIFO check
 
-        // IMPORTANT: No removal, no allocation, no inventory update
     }
 }
